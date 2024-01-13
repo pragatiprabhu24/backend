@@ -1,8 +1,22 @@
 const express = require('express');
+const dotenv = require('dotenv');
+const colors = require('colors');
+const morgan = require('morgan');
+const cors = require('cors');
+const connectDB = require('./config/db');
+
+
+dotenv.config();
+
+connectDB();
 
 const app = express();
 
-const PORT = 8080
+app.use(cors());
+app.use(morgan('dev'));
+app.use(express.json());
+
+const PORT = process.env.PORT || 8080
 
 app.get('/', (req, res) => {
     res.json({ message: 'Hello World' })
