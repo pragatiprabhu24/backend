@@ -53,4 +53,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Phone is required"],
   },
-});
+},{timestamps:true});
+
+module.exports = mongoose.model("Users", userSchema);
