@@ -10,7 +10,7 @@ module.exports = async (req, res, next) => {
           message: "Invalid or Expired Token",
         });
       } else {
-        req.body.userId = decoded.id;
+        req.body.userId = decoded.userId;
         next();
       }
     });
