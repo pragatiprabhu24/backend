@@ -32,10 +32,13 @@ const CreateInventory = async (req, res) => {
 
 const getInventory = async (req, res) => {
   try {
-    const inventory = await inventoryModel.find({
-      organisation: req.body.userId,
-    });
-
+    const inventory = await inventoryModel
+      .find({
+        organisation: req.body.userId,
+      })
+      .populate('donar')
+      .populate('hospital')
+      .sort({ createdAt: -1 });
     return res.status(200).send({
       success: true,
       messaage: "get all records successfully",
